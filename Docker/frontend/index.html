@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch Dummy Data</title>
+    <script>
+        async function fetchData() {
+            const response = await fetch("http://localhost:5000/data");
+            const data = await response.json();
+            document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+        }
+    </script>
+</head>
+<body>
+    <h1>Dummy Data Fetcher</h1>
+    <button onclick="fetchData()">Fetch Data</button>
+    <pre id="result"></pre>
+</body>
+</html>

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-api
+  labels:
+    app: admin-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admin-api
+  template:
+    metadata:
+      labels:
+        app: admin-api
+    spec:
+      containers:
+      - name: admin-api
+        image: mohammadhani18/labadmin
+        ports:
+        - containerPort: 5000
+        env:
+        - name: ADMIN_KEY
+          valueFrom:
+            secretKeyRef:
+              name: admin-secret
+              key: admin-key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-api
+spec:
+  selector:
+    app: admin-api
+  ports:
+  - port: 5000
+    targetPort: 5000
