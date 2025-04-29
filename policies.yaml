@@ -43,7 +43,6 @@ spec:
       app: admin-api
   policyTypes:
   - Ingress
-  # Empty ingress array means no ingress traffic allowed
   ingress: []
 
 ---
